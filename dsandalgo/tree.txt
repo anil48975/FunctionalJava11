@@ -1,0 +1,92 @@
+In Tree,
+	Two nodes that are children of the same parent are siblings. A node v is external
+	if v has no children. A node v is internal if it has one or more children. External
+	nodes are also known as leaves.
+
+Ordered Trees,
+	A tree is ordered if there is a meaningful linear order among the children of each
+	node; that is, we purposefully identify the children of a node as being the first,
+	second, third, and so on. Such an order is usually visualized by arranging siblings
+	left to right, according to their order.
+
+Tree Traversal Algorithms
+	A traversal of a tree T is a systematic way of accessing, or "visiting," all the positions
+	of T.
+	
+	To traverse a tree so that we visit all the positions at depth d before we visit the positions at depth d+1. 
+	Such an algorithm is known as a breadth-first traversal. 
+	For Breadth First search [Queue will be well suited datastructure to keep the nodes]
+	
+	To traverse a tree so that we visit all the positions till leaves before moving to next element of the same defth.
+	Such an algorithm is known as a defth-first traversal. 
+	For Breadth First search [Stack will be well suited datastructure to keep the nodes]
+	
+A binary tree is an ordered tree with the following properties:
+	1. Every node has at most two children.
+	2. Each child node is labeled as being either a left child or a right child.
+	3. A left child precedes a right child in the order of children of a node.	
+	
+we define a binary search tree as a proper binary tree such that each internal
+position p stores a key-value pair (k,v) such that:
+	• Keys stored in the left subtree of p are less than k.
+	• Keys stored in the right subtree of p are greater than k.
+	Figure for Binary Search Tree [Reference: Data Structures and Algorithms in Java, 6th Edition: Figure 11.1: Pgee 460]
+
+Balanced Search Trees:
+	we noted that if we could assume a random series of insertions and removals, the standard binary search tree supports O(logn) expected running times 
+	for the basic map operations. However, we may only claim O(n) worst-case time, because some sequences of operations may lead to an unbalanced tree 
+	with height proportional to n.
+
+The primary operation to rebalance a binary search tree is known as a rotation.
+    Rotation=> 1[root] -> 2 -> 3 After Roattion: 1 <- 2[root] -> 3.
+	Figure for A rotation operation in a binary search tree.  [Reference: Data Structures and Algorithms in Java, 6th Edition: Figure 11.8: Pgee 472]
+
+Balance Tree Terms:
+	Height-Balance Property: For every internal position p of T, the heights of the children of p differ by at most 1.
+	BalanceFactor = height(left sutree) - height(right sutree)
+
+AVL Tree:
+	AVL tree checks the height of left and right sub-trees and assures that the difference is not more than 1. This difference is called Balance Factor.
+
+Splay Tree:
+	The efficiency of splay trees is due to a certain move-to-root operation, called splaying, that is performed at the bottommost position p reached 
+	during every insertion, deletion, or even a search.
+	
+	Splaying Strategy:
+	Zig-Zig:  10[root] -> 20 -> 30 to 30[root] -> 20 -> 10
+	Zig-Zag:  10[root] -> 30 -> 20 to 10 <- 20[Root] -> 30 
+	Zig:      10[root] -> 20             to 20[root] -> 10
+
+Multi-way Search Trees
+	Each internal node of a multi-way search tree T 
+		has at least two children
+		stores a collection of items of the form (k, x),
+			where k is a key and x is an element
+ 		contains d - 1 items, where d is the number of children
+        contains 2 pseudo-items: Ko = - infinite , Kd = +infinite
+	Children of each internal node are "between" items
+	- all keys in the subtree rooted at the child fall
+		between keys of those items
+    External nodes are just placeholders
+
+Multi-way Searching
+	 - Similar to binary searching
+	 - If search key s < k1, search the leftmost child
+	 - If s > kd – 1, search the rightmost child
+	 - That’s it in a binary tree; what about if ?
+	 - Find two keys ki – 1 and ki, between which s falls,
+	   and search the child vi.
+	  
+(2,4) Trees:
+	At most 4 children
+	All external nodes have same depth
+	Height h of (2,4) tree is O(logn)
+
+Red Black Tree:
+	Formally, a red-black tree is a binary search tree (see Section 11.1) with nodes colored red and black in a way that satisfies the following properties:
+	Root Property: The root is black.
+	External Property: Every external node is black.
+	Red Property: The children of a red node are black.
+	Depth Property: All external nodes have the same black depth, defined as the number of proper ancestors that are black.
+	
+
