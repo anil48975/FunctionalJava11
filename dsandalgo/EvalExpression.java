@@ -1,10 +1,7 @@
 package dsandalgo;
 
 import java.util.*;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -24,13 +21,15 @@ public class EvalExpression {
         EvalExpression evalExpression = new EvalExpression();
         try {
             //Exception handling for Future
-            System.out.println("Expected Result: 22 :: Actual result: " + executorService.submit(() -> {
+            Callable<Integer> task = () -> {
                 try {
-                    evalExpression.evaluateExpression("7+8/2-1+3*4");
+                    return evalExpression.evaluateExpression("7+8/2-1+3*4");
                 } catch(Exception e) {
-                    System.out.println();
+                    System.out.println(e.getMessage());
                 }
-            }).get());
+                return -1;
+            };
+            System.out.println("Expected Result: 22 :: Actual result: " + executorService.submit(task).get());
             System.out.println("Expected Result: 26 :: Actual result: " + executorService.submit(() -> evalExpression.evaluateExpression("7+5*2/2+14")).get());
             System.out.println("Expected Result: 17 :: Actual result: " + executorService.submit(() -> evalExpression.evaluateExpression("7+5*2/2+(14-4)/2")).get());
             System.out.println("Expected Result: 17 :: Actual result: " + executorService.submit(() -> evalExpression.evaluateExpression("(7+5*2/2+(14-4)/2)")).get());
